@@ -1,0 +1,18 @@
+{
+  "refresh": "Refresh",
+  "match": {
+    "status": "Status",
+    "status_LIVE": "Live",
+    "status_FINISHED": "Finished",
+    "status_PREPARING": "Preparing",
+    "status_ALL": "All",
+    "info": {
+      "points": "Points",
+      "totalKills": "Total kills",
+      "place": "Place"
+    }
+  },
+  "matchTracker": "Match Tracker",
+  "refreshError": "Error: failed to upload match information",
+  "kills": "Kills"
+}

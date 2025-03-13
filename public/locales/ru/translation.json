@@ -1,0 +1,18 @@
+{
+  "refresh": "Обновить",
+  "match": {
+    "status": "Статус",
+    "status_LIVE": "Эфир",
+    "status_FINISHED": "Завершено",
+    "status_PREPARING": "Подготовка",
+    "status_ALL": "Все статусы",
+    "info": {
+      "points": "Очки",
+      "totalKills": "Всего убийств",
+      "place": "Место"
+    }
+  },
+  "matchTracker": "Match Tracker",
+  "refreshError": "Ошибка: не удалось загрузить информацию",
+  "kills": "Убийств"
+}

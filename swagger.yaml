@@ -1,0 +1,123 @@
+openapi: 3.0.3
+info:
+  title: Front Test API
+  version: '1.0'
+  description: Тестовое задание для Frontend разработчика
+
+paths:
+  /fronttemp:
+    get:
+      tags: [ Получить список матчей ]
+      summary: Получить список матчей
+      operationId: fetch
+      responses:
+        '200':
+          description: Список матчей
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Successful-Response'
+                  - properties:
+                      data:
+                        type: object
+                        properties:
+                          matches:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Match'
+                        required: [ matches ]
+
+components:
+  schemas:
+    Player:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Имя игрока
+        kills:
+          type: integer
+          description: Количество убийств
+      required:
+        - username
+        - kills
+
+    Team:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Название команды
+        players:
+          type: array
+          items:
+            $ref: '#/components/schemas/Player'
+        points:
+          type: integer
+          description: Количество очков
+        place:
+          type: integer
+          description: Место в турнирной таблице
+        total_kills:
+          type: integer
+          description: Количество убийств
+      required:
+        - name
+        - players
+        - points
+        - place
+        - total_kills
+
+    MatchStatus:
+      type: string
+      description: Статус матча
+      enum:
+        - Scheduled  # матч запланирован, но еще не начался
+        - Ongoing    # матч в процессе проведения
+        - Finished   # матч завершен
+
+    Match:
+      type: object
+      properties:
+        time:
+          type: string
+          format: date-time
+          description: Время проведения матча
+        title:
+          type: string
+          description: Название матча
+        homeTeam:
+          $ref: '#/components/schemas/Team'
+        awayTeam:
+          $ref: '#/components/schemas/Team'
+        homeScore:
+          type: integer
+          description: Счет домашней команды
+        awayScore:
+          type: integer
+          description: Счет гостевой команды
+        status:
+          $ref: '#/components/schemas/MatchStatus'
+      required:
+        - time
+        - title
+        - homeTeam
+        - awayTeam
+        - status
+        - homeScore
+        - awayScore
+
+    Successful-Response:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          default: true
+          description: Indicated whether the response is successful.
+        data:
+          type: object
+          description: If successful, response from api
+      required:
+        - ok
+        - data
